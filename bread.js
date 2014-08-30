@@ -1,4 +1,5 @@
 var photos = [];
+var started = false;
 
 function getBreadPhotos(){
     $.ajax({
@@ -21,9 +22,9 @@ function getBreadPhotos(){
                     var url = e.data.url;
                     console.log(url);
                     photos.push(url);
-                    if(photos.length == 1){
-                        $(".bread").css("background-image", "url("+url+")");
-                        window.setTimeout(showNext, 5 * 1000);
+                    if(!started){
+                        started = true;
+                        showNext();
                     }
                 });
                 img.attr("src", url);
@@ -32,22 +33,35 @@ function getBreadPhotos(){
     });
 }
 
+function randomTransform(){
+    var transform = "scale(" + (1 + Math.random()*0.3 + 0.2) + ") ";
+    transform += "translateX(" + (5-Math.floor(Math.random()*10)) + "%) ";
+    transform += "translateY(" + (5-Math.floor(Math.random()*10)) + "%) ";
+    return transform;
+}
+
 function showNext(){
-    var photo = photos.shift();
-    photos.push(photo);
+    var photo = photos.pop();
+    photos.unshift(photo);
 
     var stalebread = $(".bread");
     var newbread = $("<div class='new bread'/>");
     newbread.css("background-image", "url("+photo+")");
+    newbread.on("transitionend", transitionend);
     stalebread.removeClass("new");
     $(document.body).append(newbread);
-    stalebread.on("transitionend", destroyBread);
     stalebread.addClass("stale");
+    newbread.css("transform", randomTransform());
+    var _ = newbread[0].offsetTop; //trigger layout
+    newbread.removeClass("new");
+    newbread.css("transform", randomTransform());
 }
 
-function destroyBread(e){
-    $(e.target).remove();
-    window.setTimeout(showNext, 5 * 1000);
+function transitionend(e){
+    if(e.propertyName == "opacity")
+        $(e.target).remove();
+    if(e.propertyName == "transform")
+        showNext();
 }
 
 $(getBreadPhotos);

@@ -2,6 +2,7 @@ html, body {
     margin: 0;
     padding: 0;
     background: black;
+    overflow: hidden;
 }
 
 .bread {
@@ -11,13 +12,15 @@ html, body {
     background-position: center;
     z-index: 20;
     opacity: 1;
+    transition: opacity 1s ease-in, transform 5s linear;
 }
 
 .bread.new {
     z-index: 10;
+    transition: none;
 }
 
 .bread.stale {
+    z-index: 30;
     opacity: 0;
-    transition: opacity 1s ease-in;
 }
