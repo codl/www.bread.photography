@@ -3,6 +3,8 @@ html, body {
     padding: 0;
     background: black;
     overflow: hidden;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
 }
 
 .bread {
@@ -13,6 +15,7 @@ html, body {
     z-index: 20;
     opacity: 1;
     transition: opacity 1s ease-in, transform 5s linear;
+    will-change: transform, opacity;
 }
 
 .bread.new {
