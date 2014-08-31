@@ -3,7 +3,7 @@ var started = false;
 
 function getBreadPhotos(){
     $.ajax({
-        url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=9a845e09c486efec8e2259c05e034254&text=bread&format=json&nojsoncallback=1&sort=relevance&content_type=1&extras=url_o,url_l",
+        url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=9a845e09c486efec8e2259c05e034254&text=bread&format=json&nojsoncallback=1&sort=relevance&content_type=1&extras=url_o,url_l&license=1,2,3,4,5,6,7",
         success: function(data){
             for(var i=0; i < data.photos.photo.length; i++){
                 var photo = data.photos.photo[i];
