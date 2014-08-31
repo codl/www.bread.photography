@@ -27,3 +27,23 @@ html, body {
     z-index: 30;
     opacity: 0;
 }
+
+a#source {
+    display: block;
+    background: rgba(0,0,0,0.2);
+    color: rgba(255,255,255,0.5);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 50;
+    text-decoration: none;
+    padding: 1em;
+    font-size: 10pt;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+}
+
+a#source:not([href]) {
+    opacity:0;
+
+}
