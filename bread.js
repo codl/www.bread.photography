@@ -1,6 +1,14 @@
 var photos = [];
 var started = false;
 
+function acknowledgeBread(e){
+    photos.push(e.data);
+    if(!started){
+        started = true;
+        showNext();
+    }
+}
+
 function getBreadPhotos(){
     $.ajax({
         url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=0262b62c1e3dda3b26823024875e2bc1&text=bread&format=json&nojsoncallback=1&sort=relevance&content_type=1&extras=url_o,url_l&license=1,2,3,4,5,6,7",
@@ -19,14 +27,7 @@ function getBreadPhotos(){
 
                 // preload in cache, if 200 then we can add it to the global photos array
                 var img = $("<img/>");
-                img.on("load", {url:url, link:link}, function(e){
-
-                    photos.push(e.data);
-                    if(!started){
-                        started = true;
-                        showNext();
-                    }
-                });
+                img.on("load", {url:url, link:link}, acknowledgeBread);
                 img.attr("src", url);
             }
         },
