@@ -73,3 +73,5 @@ function transitionend(e){
 }
 
 $(getBreadPhotos);
+
+console.info("This website's source is public domain and is available at https://github.com/codl/www.bread.photography/");
