@@ -1,15 +1,19 @@
 var photos = [];
 var started = false;
+var starttime;
 
 function acknowledgeBread(e){
     photos.push(e.data);
     if(!started){
         started = true;
+        ga('send', 'timing', 'bread', 'loaded one', new Date().getTime() - startTime);
         showNext();
     }
 }
 
 function getBreadPhotos(){
+    startTime = new Date().getTime();
+
     $.ajax({
         url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=0262b62c1e3dda3b26823024875e2bc1&text=bread&format=json&nojsoncallback=1&sort=relevance&content_type=1&extras=url_o,url_l&license=1,2,3,4,5,6,7",
         success: function(data){
