@@ -21,7 +21,7 @@ function getBreadPhotos(){
             for(var i=0; i < data.photos.photo.length; i++){
                 var photo = data.photos.photo[i];
                 var url;
-                if(photo.url_o)
+                if(photo.url_o && photo.height_o >= 600 && photo.width_o >= 800)
                     url = photo.url_o;
                 else if(photo.url_l)
                     url = photo.url_l;
