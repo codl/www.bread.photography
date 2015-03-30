@@ -12,10 +12,11 @@ function acknowledgeBread(e){
 }
 
 function getBreadPhotos(){
+    var page = Math.ceil(Math.random() * 4);
     startTime = new Date().getTime();
 
     $.ajax({
-        url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=0262b62c1e3dda3b26823024875e2bc1&text=bread&format=json&nojsoncallback=1&sort=relevance&content_type=1&extras=url_o,url_l&license=1,2,3,4,5,6,7",
+        url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=0262b62c1e3dda3b26823024875e2bc1&text=bread&format=json&nojsoncallback=1&sort=relevance&content_type=1&extras=url_o,url_l&license=1,2,3,4,5,6,7&page=" + page,
         success: function(data){
             for(var i=0; i < data.photos.photo.length; i++){
                 var photo = data.photos.photo[i];
