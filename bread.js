@@ -7,6 +7,7 @@ function acknowledgeBread(e){
     if(!started){
         started = true;
         ga('send', 'timing', 'bread', 'loaded one', new Date().getTime() - startTime);
+        document.body.classList.add('loaded');
         showNext();
     }
 }

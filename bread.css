@@ -8,6 +8,30 @@ html, body {
     font-family: sans-serif;
 }
 
+body:not(.loaded):after {
+    box-sizing: border-box;
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border: 6px solid transparent;
+    border-top-color: white;
+    border-radius: 100%;
+    animation: spin .4s infinite linear;
+    z-index: 10;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
 .bread {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
