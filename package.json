@@ -1,0 +1,14 @@
+{
+  "name": "bread-photography",
+  "private": true,
+  "devDependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-cachebust": "0.0.5",
+    "gulp-hash": "^2.0.4",
+    "gulp-hash-references": "^1.0.2",
+    "gulp-rsync": "0.0.5",
+    "gulp-uglify": "^1.2.0"
+  }
+}
