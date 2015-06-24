@@ -1,9 +1,14 @@
-var gulp = require('gulp'),
-    autoprefixer = require('gulp-autoprefixer'),
-    cachebuster = require('gulp-cachebust'),
-    del = require('del'),
-    rsync = require('gulp-rsync'),
-    uglify = require('gulp-uglify');
+var gulp = require('gulp');
+var autoprefixer = require('gulp-autoprefixer');
+var cachebuster = require('gulp-cachebust');
+var rsync = require('gulp-rsync');
+var uglify = require('gulp-uglify');
+
+var connect = require('connect');
+var serveStatic = require('serve-static');
+var morgan = require('morgan');
+
+var del = require('del');
 
 var cachebust = new cachebuster();
 
@@ -51,4 +56,9 @@ gulp.task('watch', ['js', 'css', 'html-no-cachebust'], function(){
     gulp.watch('src/*.js', ['js']);
     gulp.watch('src/*.css', ['css']);
     gulp.watch('src/*.html', ['html-no-cachebust']);
+});
+
+gulp.task('serve', ['watch'], function(){
+    connect().use(morgan('tiny')).use(serveStatic('build/')).listen(8080);
+    console.log("Listening on 0.0.0.0:8080");
 });
