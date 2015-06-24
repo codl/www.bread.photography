@@ -46,3 +46,9 @@ gulp.task('deploy', function(){
     gulp.src('build/')
         .pipe(rsync({root: 'build', hostname: 'ana.bread.photography', destination: '/srv/www.bread.photography', recursive: true, clean: true}));
 });
+
+gulp.task('watch', ['js', 'css', 'html-no-cachebust'], function(){
+    gulp.watch('src/*.js', ['js']);
+    gulp.watch('src/*.css', ['css']);
+    gulp.watch('src/*.html', ['html-no-cachebust']);
+});
